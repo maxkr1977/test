@@ -72,7 +72,7 @@ public class Task1 {
 				wr.add(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fn))));
 			}
 			catch(IOException ex){
-				System.err.println("Не удалось создать/открыть файл " + fn);
+				System.err.println("Can't create/open file " + fn);
 				ex.printStackTrace();
 			}
 		}
@@ -88,7 +88,7 @@ public class Task1 {
 				j++;
 			}
 			catch(IOException ex){
-				System.out.println("Не удалось произвести запись в файл " + outputFiles.get(j));
+				System.out.println("Failed frite to file " + outputFiles.get(j));
 				ex.printStackTrace();
 			}
 			if(j == wr.size()){
@@ -103,14 +103,14 @@ public class Task1 {
 			}
 		}
 		catch(IOException ex){
-			System.out.println("Ошибка при закрытии файла " + outputFiles.get(j));
+			System.out.println("Error on closing file " + outputFiles.get(j));
 			ex.printStackTrace();
 		}
 	}
 	
 	public static void main(String[] args){
 		if(args.length<3){
-			System.out.println("Не хватает аргументов!");
+			System.out.println("Argument absents!");
 			return;
 		}
 		Task1 gd = new Task1();
@@ -118,7 +118,7 @@ public class Task1 {
 			long st = System.currentTimeMillis();
 			gd.process(Arrays.asList(Arrays.copyOfRange(args,2,args.length)));
 			long et = System.currentTimeMillis();
-			System.out.println(String.format("Сгенерировано %1$s операций за %2$sс", args[1], (et-st)/1000.0));
+			System.out.println(String.format("Operation = %1$s time = %2$sс", args[1], (et-st)/1000.0));
 		}
 	}
 }
