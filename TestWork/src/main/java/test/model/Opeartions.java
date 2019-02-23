@@ -1,4 +1,4 @@
-package testPart1.model;
+package test.model;
 
 import java.math.BigDecimal;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package testPart1;
+package test;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,20 +14,20 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-import testPart1.model.Office;
-import testPart1.model.Opeartions;
+import test.model.Office;
+import test.model.Opeartions;
 
-public class GenerateData {
+public class Task1 {
 	private List<Office> off = new ArrayList<>();
 	private Integer countOperation;
 	private final long minDate;
 	private final long maxDate;
 	
-	private final long minAmount = 1000012;
-	private final long maxAmount = 10000051;
+	private static final long MIN_AMOUNT = 1000012;
+	private static final long MAX_AMOUNT = 10000051;
 	
 	
-	public GenerateData(){
+	public Task1(){
 		Calendar c = Calendar.getInstance();
 		int year = c.get(Calendar.YEAR);
 		c.set(year, 0, 1);
@@ -80,7 +80,7 @@ public class GenerateData {
 		for(int i = 0; i<countOperation; i++){
 			Opeartions o = new Opeartions();
 			o.setDate(ThreadLocalRandom.current().nextLong(minDate, maxDate));
-			o.setAmount(BigDecimal.valueOf(ThreadLocalRandom.current().nextLong(minAmount, maxAmount)/100.0).setScale(2, BigDecimal.ROUND_HALF_UP));
+			o.setAmount(BigDecimal.valueOf(ThreadLocalRandom.current().nextLong(MIN_AMOUNT, MAX_AMOUNT)/100.0).setScale(2, BigDecimal.ROUND_HALF_UP));
 			o.setOffice(off.get(ThreadLocalRandom.current().nextInt(0, off.size())));
 			try{
 				wr.get(j).write(o.toString());
@@ -110,18 +110,14 @@ public class GenerateData {
 	
 	public static void main(String[] args){
 		if(args.length<3){
-			System.out.println("Arguments absent!");
+			System.out.println("Не хватает аргументов!");
 		}
-		GenerateData gd = new GenerateData();
+		Task1 gd = new Task1();
 		if(gd.addOffices(args[0])&&gd.setOpsCount(args[1])){
 			long st = System.currentTimeMillis();
 			gd.process(Arrays.asList(Arrays.copyOfRange(args,2,args.length)));
 			long et = System.currentTimeMillis();
 			System.out.println(String.format("Сгенерировано %1$s операций за %2$sс", args[1], (et-st)/1000.0));
 		}
-	}
-
-	public List<Office> getOffices() {
-		return off;
 	}
 }

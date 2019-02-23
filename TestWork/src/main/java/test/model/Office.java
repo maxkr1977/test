@@ -1,4 +1,4 @@
-package testPart1.model;
+package test.model;
 
 public class Office {
 	private Integer code;
