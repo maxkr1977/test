@@ -111,9 +111,10 @@ public class Task1 {
 	public static void main(String[] args){
 		if(args.length<3){
 			System.out.println("Не хватает аргументов!");
+			return;
 		}
 		Task1 gd = new Task1();
-		if(gd.addOffices(args[0])&&gd.setOpsCount(args[1])){
+		if(gd.addOffices(args[0]) && gd.setOpsCount(args[1])){
 			long st = System.currentTimeMillis();
 			gd.process(Arrays.asList(Arrays.copyOfRange(args,2,args.length)));
 			long et = System.currentTimeMillis();
