@@ -17,6 +17,6 @@ public class Office {
 	}
 	@Override
 	public String toString() {
-		return "Office [code=" + code + ", description=" + description + "]";
+		return code.toString();
 	}
 }
